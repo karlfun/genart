@@ -1,0 +1,27 @@
+// Assuming you have an SVG element with an id "svgContainer" in your HTML
+const svgContainer = document.getElementById("svgContainer");
+const centerX = 150; // X-coordinate of the center of the circles
+const centerY = 150; // Y-coordinate of the center of the circles
+const radiusIncrement = 20; // Increment in radius for each circle
+const arcRadius = 20; // Radius of the arcs
+const arcStartAngle = 0; // Starting angle of the arcs
+const arcEndAngle = 270; // Ending angle of the arcs
+
+for (let i = 0; i < 5; i++) { // Change 5 to the desired number of circles
+  const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+  circle.setAttribute("cx", centerX);
+  circle.setAttribute("cy", centerY);
+  circle.setAttribute("r", radiusIncrement * i);
+  circle.setAttribute("fill", "transparent");
+  circle.setAttribute("stroke", "black");
+  svgContainer.appendChild(circle);
+
+  const arc = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  const arcX = centerX;
+  const arcY = centerY - radiusIncrement * i;
+  const arcD = `M ${arcX},${arcY} A ${arcRadius},${arcRadius} 0 0,1 ${arcX + arcRadius * 2},${arcY}`;
+  arc.setAttribute("d", arcD);
+  arc.setAttribute("fill", "transparent");
+  arc.setAttribute("stroke", "blue"); // Change the color as desired
+  svgContainer.appendChild(arc);
+}
